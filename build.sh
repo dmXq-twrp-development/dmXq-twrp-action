@@ -2,8 +2,6 @@
 
 set -e
 
-START_TIME=$(date +%s)
-
 # Color definitions
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -170,11 +168,6 @@ lunch "twrp_${DEVICE}-eng" || error "Lunch failed for device: $DEVICE"
 
 info "Building: $TARGET"
 make -j"$(nproc)" "$TARGET" || error "Build failed for target: $TARGET"
-
-# Show build completion time,
-END_TIME=$(date +%s)
-TOTAL_TIME=$((END_TIME - START_TIME))
-info "Build finished in $((TOTAL_TIME / 60)) min $((TOTAL_TIME % 60)) sec."
 
 # Start compression and packaging according to target
 case "$TARGET" in
