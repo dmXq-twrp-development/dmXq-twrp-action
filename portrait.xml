@@ -192,9 +192,9 @@
 			</text>
 
 			<text style="text_m">
-				<condition var1="tw_no_cpu_temp" var2="0"/>
+				<condition var1="tw_no_cpu_temp" var2="1"/>
 				<placement x="%col1_x_header%" y="%row4_header_y%"/>
-				<text>Cpu: %tw_cpu_temp% °C</text>
+				<text></text>
 			</text>
 
 			<button style="main_button">
