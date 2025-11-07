@@ -2,6 +2,9 @@ name: build twrp
 
 on:
   workflow_dispatch:
+  schedule:
+  - cron: "0 21 * * 0-6"  # 04:00 AM Thailand/Vietnam (UTC+7)
+  - cron: "0 9 * * 1-7"   # 16:00 PM Thailand/Vietnam (UTC+7)
   
 jobs:
   build:
@@ -32,6 +35,12 @@ jobs:
 
     - name: Cleanup
       uses: rokibhasansagar/slimhub_actions@main
+    
+    - name: Set TimeZones
+      run: |
+        sudo timedatectl set-timezone Asia/Ho_Chi_Minh
+        sudo dpkg-reconfigure tzdata
+        echo "date=$(TZ=Asia/Ho_Chi_Minh date +%Y-%m-%d-%H:%M:%S)"
     
     - name: Prepare the environment
       run: |
@@ -109,7 +118,7 @@ jobs:
 
     - name: Set variables
       run: |
-        echo "date=$(TZ=America/Los_Angeles date +%Y%m%d-%H%M)" >> $GITHUB_OUTPUT
+        echo "date=$(TZ=Asia/Ho_Chi_Minh date +%Y-%m-%d-%H:%M:%S)" >> $GITHUB_OUTPUT
         echo "Outdir=${GITHUB_WORKSPACE}" >> $GITHUB_OUTPUT
       id: var
 
