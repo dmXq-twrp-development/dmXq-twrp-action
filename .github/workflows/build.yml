@@ -1,10 +1,11 @@
 name: build twrp
 
 on:
-  workflow_dispatch:
   schedule:
-  - cron: "0 21 * * 0-6"  # 04:00 AM Thailand/Vietnam (UTC+7)
-  - cron: "0 9 * * 1-7"   # 16:00 PM Thailand/Vietnam (UTC+7)
+  - cron: "0 21 * * 1-5"  # 04:00 AM Thailand/Vietnam (UTC+7)
+  - cron: "0 9 * * 1-5"   # 16:00 PM Thailand/Vietnam (UTC+7)
+
+# workflow_dispatch:
   
 jobs:
   build:
